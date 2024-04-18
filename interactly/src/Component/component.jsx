@@ -101,6 +101,13 @@ export default function Component() {
     setLabel(val.data.label);
   };
 
+  const onEdgeClick = (e, val) => {
+    const newEdges = edges.filter(
+      (edge) => edge.source !== val.source && edge.target !== val.target
+    );
+    setEdges(newEdges);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -123,9 +130,6 @@ export default function Component() {
 
   const removeNode = () => {
     const newNodes = nodes.filter((node) => node.id !== id);
-    const newEdges = edges.filter(
-      (edge) => edge.source !== id && edge.target !== id
-    );
     setNodes(newNodes);
     setEdges(newEdges);
     setShowForm(false);
@@ -140,6 +144,9 @@ export default function Component() {
         <ReactFlow
           nodes={nodes}
           onNodeClick={(e, val) => onNodeClick(e, val)}
+          onEdgeClick={(e, val) => {
+            onEdgeClick(e, val);
+          }}
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
