@@ -129,6 +129,9 @@ export default function Component() {
   };
 
   const removeNode = () => {
+    const newEdges = edges.filter(
+      (edge) => edge.source !== id && edge.target !== id
+    );
     const newNodes = nodes.filter((node) => node.id !== id);
     setNodes(newNodes);
     setEdges(newEdges);
