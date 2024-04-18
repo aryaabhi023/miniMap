@@ -103,7 +103,7 @@ export default function Component() {
 
   const onEdgeClick = (e, val) => {
     const newEdges = edges.filter(
-      (edge) => edge.source !== val.source && edge.target !== val.target
+      (edge) => !(edge.source === val.source && edge.target === val.target)
     );
     setEdges(newEdges);
   };
